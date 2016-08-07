@@ -1,0 +1,33 @@
+--- dwm-6.1/config.def.h	2015-11-09 04:09:37.000000000 +0530
++++ dwmtest/config.def.h	2016-04-06 22:15:33.963269850 +0530
+@@ -42,7 +42,7 @@
+ };
+ 
+ /* key definitions */
+-#define MODKEY Mod1Mask
++#define MODKEY Mod4Mask
+ #define TAGKEYS(KEY,TAG) \
+ 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
+ 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
+@@ -55,7 +55,7 @@
+ /* commands */
+ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+-static const char *termcmd[]  = { "st", NULL };
++static const char *termcmd[]  = { "tabbed", "-c", "-r", "2", "st", "-w", "''", "-e", "tmux", "-2", NULL };
+ 
+ static Key keys[] = {
+ 	/* modifier                     key        function        argument */
+@@ -111,3 +111,12 @@
+ 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+ };
+ 
++#define NUMCOLORS         4
++static const char colors[NUMCOLORS][MAXCOLORS][8] = {
++  // border   foreground background
++  { "#000033", "#dddddd", "#000033" },  // normal
++  { "#000088", "#ffffff", "#000088" },  // selected
++  { "#ff0000", "#000000", "#ffff00" },  // urgent/warning  (black on yellow)
++  { "#ff0000", "#ffffff", "#ff0000" },  // error (white on red)
++  // add more here
++};
